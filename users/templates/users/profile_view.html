@@ -1,0 +1,22 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Профиль — {{ profile_user.username }}{% endblock %}
+
+{% block content %}
+<div class="card">
+  <div class="card-header">
+    <h2>Профиль пользователя: {{ profile_user.username }}</h2>
+  </div>
+  <div class="card-body">
+    <p><strong>Имя пользователя:</strong> {{ profile_user.username }}</p>
+    {% if profile_user.first_name or profile_user.last_name %}
+    <p><strong>Имя:</strong> {{ profile_user.first_name }} {{ profile_user.last_name }}</p>
+    {% endif %}
+    <p><strong>Email:</strong> {{ profile_user.email }}</p>
+    <p><strong>Дата регистрации:</strong> {{ profile_user.date_joined|date:"d.m.Y H:i" }}</p>
+  </div>
+  <div class="card-footer">
+    <a href="{% url 'tasks:home' %}" class="btn btn-outline-primary">Назад</a>
+  </div>
+</div>
+{% endblock %}

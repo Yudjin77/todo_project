@@ -1,0 +1,35 @@
+{% extends 'main/base.html' %}
+
+{% block title %}{{ task.title }} — Задача{% endblock %}
+
+{% block content %}
+<div class="card mb-3">
+  <div class="card-header">
+    <h2>{{ task.title }}</h2>
+    <small>Категория: {{ task.category.title }} | Статус: {{ task.get_current_status_display }} | Создано: {{ task.date|date:"d.m.Y H:i" }}</small>
+  </div>
+  <div class="card-body">
+    <p class="text-break" style="white-space: pre-wrap;">{{ task.description }}</p>
+    <p>Автор: <a href="{% url 'users:profile_view' task.user.slug %}">{{ task.user.username }}</a></p>
+    {% if task.publish_status %}
+      <span class="badge bg-success">Публичная</span>
+    {% else %}
+      <span class="badge bg-secondary">Приватная</span>
+    {% endif %}
+  </div>
+  <div class="card-footer">
+    <a href="{% url 'tasks:home' %}" class="btn btn-outline-primary">Назад к задачам</a>
+  </div>
+</div>
+
+<!-- Блок голосования -->
+<form method="post" class="d-inline">
+  {% csrf_token %}
+  <button type="submit" name="vote" value="like" class="btn btn-success me-2">
+    👍 Лайк {{ likes }}
+  </button>
+  <button type="submit" name="vote" value="dislike" class="btn btn-danger">
+    👎 Дизлайк {{ dislikes }}
+  </button>
+</form>
+{% endblock %}

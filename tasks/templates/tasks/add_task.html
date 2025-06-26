@@ -1,0 +1,52 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+<h2>Добавить новую задачу</h2>
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+
+    <div>
+        {{ form.title.label_tag }}<br>
+        {{ form.title }}
+        {% for error in form.title.errors %}
+            <div class="error">{{ error }}</div>
+        {% endfor %}
+    </div>
+
+    <div>
+        {{ form.category.label_tag }}<br>
+        {{ form.category }}
+        {% for error in form.category.errors %}
+            <div class="error">{{ error }}</div>
+        {% endfor %}
+    </div>
+
+    <div>
+        {{ form.description.label_tag }}<br>
+        {{ form.description }}
+        {% for error in form.description.errors %}
+            <div class="error">{{ error }}</div>
+        {% endfor %}
+    </div>
+
+    <div>
+        {{ form.current_status.label_tag }}<br>
+        {{ form.current_status }}
+        {% for error in form.current_status.errors %}
+            <div class="error">{{ error }}</div>
+        {% endfor %}
+    </div>
+
+    <div>
+        {{ form.publish_status.label_tag }}<br>
+        {{ form.publish_status }}
+        {% for error in form.publish_status.errors %}
+            <div class="error">{{ error }}</div>
+        {% endfor %}
+    </div>
+
+    <button type="submit">Добавить задачу</button>
+</form>
+{% endblock %}

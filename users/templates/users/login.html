@@ -1,0 +1,16 @@
+{% extends "main/base.html" %}
+
+{% block title %}Autorization{% endblock %}
+
+{% block content %}
+<h1>Autorization</h1>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <p><button type="submit">Enter</button></p>
+</form>
+
+<p><a href="{% url 'users:password_reset' %}">Forgot password?</a></p>
+
+{% endblock %}
