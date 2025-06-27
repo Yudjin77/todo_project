@@ -1,0 +1,18 @@
+venv/
+.venv/
+
+.vscode/
+
+# Кэш Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Логи и файлы настроек
+*.log
+*.sqlite3
+
+# Системные файлы
+.DS_Store
+Thumbs.db
